@@ -1,0 +1,14 @@
+# Ignore all files
+*
+
+# Include specific files
+!.gitignore
+!src/
+!src/*
+!src/*/
+!src/*/*
+!images/
+!images/*
+!LICENSE
+!README.md
+!setup.py
