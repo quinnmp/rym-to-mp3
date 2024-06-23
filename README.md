@@ -1,4 +1,4 @@
-<div style="text-align:center;">
+<div align="center">
     <img src="images/rym-mp3.png" width="400">
 </div>
 
