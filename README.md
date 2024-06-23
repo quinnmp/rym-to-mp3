@@ -84,10 +84,11 @@ Output files are dumped into a directory with the same name as the file you pass
 This supports the following metadata:
 
 -   Title
--   Artist
+-   Artist(s)
+    -   Including featured artists on individual tracks
 -   Album
 -   Year
--   Genre
+-   Genre(s)
 -   Track number
 -   Disc number
 -   Album cover
