@@ -1,3 +1,7 @@
+<div style="text-align:center;">
+    <img src="images/rym-mp3.png" width="400">
+</div>
+
 # RYM to MP3
 
 This tool uses [rateyourmusic.com](https://rateyourmusic.com/) and its included YouTube and SoundCloud media links to **download music with all the correct MP3 metadata**. RYM is a music database site with a vast amount of **unreleased music** that isn't on traditional streaming services, so this script is **optimized for uploading to Spotify as local files**. All of this can be done simply by **running one command with a RYM URL as an argument**, see below. This script works for **singles, mixtapes, EPs, albums, etc.** As long as it has a YouTube or SoundCloud media link.
@@ -66,6 +70,7 @@ Tracklist For All Phone Users<br>
 You can just post that full comment in a string input with `-t` and the program will use regex to parse anything that looks like a timestamp. As always, use at your own risk.
 
 ## Splitting
+
 When using a YouTube media link, a full album will be downloaded and then split into individual tracks, using either the parsed timestamps or custom timestamps if specified. I extracted this logic so that you can use it by itself with any .mp3 file. For example:
 `r2m "bigAlbum.mp3" -x -t "0:30 0:45 1:30 2:30"`
 
