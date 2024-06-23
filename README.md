@@ -13,7 +13,7 @@ However, if SoundCloud is not an option, this script will take the track lengths
 
 Make sure Python>3.8 and pip are installed.
 
-Install [ffmpeg](https://www.ffmpeg.org/download.html). I recommend using one of the packages and executables and they will often come with an `libmp3lame` installation - we'll need that to encode the files correctly. Ensure you have `ffmpeg` installed and added to your PATH and that you have `libmp3lame` installed.
+Install [ffmpeg](https://github.com/kkroening/ffmpeg-python?tab=readme-ov-file#installing-ffmpeg). I recommend using one of the packages and executables and they will often come with an `libmp3lame` installation - we'll need that to encode the files correctly. Ensure you have `ffmpeg` installed and added to your PATH and that you have `libmp3lame` installed.
 
 Run `pip install rym-to-mp3`.
 
