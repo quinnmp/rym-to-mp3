@@ -5,13 +5,13 @@ import ffmpeg
 import asyncio
 
 from .writeMP3 import write_mp3_with_metadata
+from .splitMP3 import split_mp3
 
 album_folder_path = os.path.join(os.path.dirname(__file__), "..", "album")
 track_lengths = []
 ignore_discrepancy = False
 custom_timestamps = ""
 download_successful = False
-
 
 async def get_video_length(video_url):
     try:
@@ -164,6 +164,6 @@ async def handle_youtube_link(soup, specified_link, ignore, timestamps):
     custom_timestamps = timestamps
     await download_tracks(soup, specified_link)
     if download_successful:
-        await process_audio()
+        await split_mp3("fullAudio.mp3", track_lengths, album_folder_path)
         print("All audio cropped!")
         await write_mp3_with_metadata(soup)

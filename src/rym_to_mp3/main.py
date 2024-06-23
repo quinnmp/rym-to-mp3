@@ -1,4 +1,6 @@
 import argparse
+
+from .splitHandler import handle_split_request
 from .YouTubeHandler import handle_youtube_link
 import asyncio
 from .SoundCloudHandler import handle_soundcloud_link
@@ -16,14 +18,19 @@ def main():
 
 async def handle_link():
     parser = argparse.ArgumentParser()
-    parser.add_argument("url", help="The URL to scrape")
+    parser.add_argument("url", help="The URL to scrape, or the file path when splitting with -x")
     parser.add_argument("-u", "--YouTubeLink", help="Specify a specific YouTube link")
     parser.add_argument("-t", "--timestamps", help="Specify your own timestamps to use for YouTube parsing")
     parser.add_argument("-s", "--SoundCloudLink", help="Specify a specific SoundCloud link")
     parser.add_argument("-y", "--preferYouTube", action="store_true", help="Prefer YouTube")
-    parser.add_argument("-i", "--ignore", action="store_true", help="Ignore")
+    parser.add_argument("-i", "--ignore", action="store_true", help="Ignore discrepancy between album length and YouTube video length")
+    parser.add_argument("-x", "--split", action="store_true", help="Split audio into individual tracks")
     args = parser.parse_args()
 
+    if args.split:
+        await handle_split_request(args.url, args.timestamps)
+        return
+    
     try:
         debug = False
 
