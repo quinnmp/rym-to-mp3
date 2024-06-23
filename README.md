@@ -72,6 +72,7 @@ You can just post that full comment in a string input with `-t` and the program 
 ## Splitting
 
 When using a YouTube media link, a full album will be downloaded and then split into individual tracks, using either the parsed timestamps or custom timestamps if specified. I extracted this logic so that you can use it by itself with any .mp3 file. For example:
+
 `r2m "bigAlbum.mp3" -x -t "0:30 0:45 1:30 2:30"`
 
 `-x` specifies that you want to split, and it requires you to use the `-t` option to supply timestamps - this splitting is completely independent of RYM, so you need to tell it where the breaks are. Metadata, if present, is copied from the original file to the output files.
