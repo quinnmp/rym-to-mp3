@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="rym-to-mp3",
-    version="0.1.4",
+    version="0.1.5",
     description="Use the RYM music database and media links to download music with correct metadata.",
     author="Quinn Pfeifer",
     author_email="quinnpfeifer@icloud.com",
