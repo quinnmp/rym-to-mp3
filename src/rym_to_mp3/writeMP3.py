@@ -47,6 +47,8 @@ async def data_to_metadata(soup):
     # Actually apply the metadata to the tracks
     for index, element in enumerate(pruned_track_list):
         title = element.select_one("span.tracklist_title").get_text().split("\n")[0].strip()
+        if title.lower().endswith("lyrics"):
+            title = title[:-6].strip()
         track_artists = artist_texts
         if featured_artist_texts[index]:
             track_artists += "\0" + featured_artist_texts[index]

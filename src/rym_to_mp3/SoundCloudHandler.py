@@ -6,7 +6,6 @@ from .writeMP3 import write_mp3_with_metadata
 
 album_folder_path = os.path.join(os.path.dirname(__file__), "..", "album")
 
-
 async def delete_old():
     if not os.path.exists(album_folder_path):
         os.makedirs(album_folder_path)
@@ -19,7 +18,6 @@ async def delete_old():
             print(f"Deleted file: {file_path}")
         except Exception as e:
             print(f"Error deleting file: {file_path} - {e}")
-
 
 async def download_tracks(soup, specified_link):
     # Grab the name of the album to name the directory
@@ -34,7 +32,7 @@ async def download_tracks(soup, specified_link):
 
     yt_dlp_path = shutil.which("yt-dlp")
     if link_parsed[-2] == "sets":
-        subprocess.call([yt_dlp_path, "-x", "--embed-metadata", "--audio-format", "mp3", "--output", f"{album_folder_path}/%(playlist_index)d.%(ext)s", specified_link])
+        subprocess.call([yt_dlp_path, "-x", "--embed-metadata", "--audio-format", "mp3", "--output", f"{album_folder_path}/%(autonumber)d.%(ext)s", "--autonumber-start", "0", specified_link])
     else:
         subprocess.call([yt_dlp_path, "-x", "--embed-metadata", "--audio-format", "mp3", "--output", f"{album_folder_path}/0.%(ext)s", specified_link])
 

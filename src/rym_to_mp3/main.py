@@ -16,6 +16,7 @@ from bs4 import BeautifulSoup
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("url", help="The URL to scrape, or the file path when splitting with -x")
+    parser.add_argument("--html", help="Specify html")
     parser.add_argument("-u", "--YouTubeLink", help="Specify a specific YouTube link")
     parser.add_argument("-t", "--timestamps", help="Specify your own timestamps to use for YouTube parsing")
     parser.add_argument("-s", "--SoundCloudLink", help="Specify a specific SoundCloud link")
@@ -28,27 +29,32 @@ def main():
         asyncio.run(handle_split_request(args.url, args.timestamps))
         return
     
-    try:
-        # Set up Chrome options
-        chrome_options = webdriver.ChromeOptions()
+    if args.html:
+        with open(args.html, 'r', encoding='utf-8') as file:
+            html = file.read()
+        soup = BeautifulSoup(html, 'html.parser')
+    else:
+        try:
+            # Set up Chrome options
+            chrome_options = webdriver.ChromeOptions()
 
-        # Initialize the Chrome driver
-        driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
+            # Initialize the Chrome driver
+            driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=chrome_options)
 
-        # Go to the URL
-        driver.get(args.url)
-        
-        WebDriverWait(driver, 60).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'div.ui_media_links_container'))
-        )
+            # Go to the URL
+            driver.get(args.url)
+            
+            WebDriverWait(driver, 60).until(
+                EC.presence_of_element_located((By.CSS_SELECTOR, 'div.ui_media_links_container'))
+            )
 
-        data = driver.page_source
-        driver.quit()
-        soup = BeautifulSoup(data, 'html.parser')
-    except Exception as e:
-        print("Something went wrong trying to scrape RYM. This can happen fairly frequently. Try again!")
-    finally:
-        driver.quit()
+            data = driver.page_source
+            driver.quit()
+            soup = BeautifulSoup(data, 'html.parser')
+        except Exception as e:
+            print("Something went wrong trying to scrape RYM. This can happen fairly frequently. Try again!")
+        finally:
+            driver.quit()
 
     try:
         YouTubeLink = args.YouTubeLink if args.YouTubeLink else soup.find('a', class_='ui_media_link_btn_youtube').get('href')

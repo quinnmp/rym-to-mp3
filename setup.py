@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="rym-to-mp3",
-    version="0.1.5",
+    version="0.1.6",
     description="Use the RYM music database and media links to download music with correct metadata.",
     author="Quinn Pfeifer",
     author_email="quinnpfeifer@icloud.com",
@@ -17,7 +17,8 @@ setup(
         "selenium>=4.21.0",
         "webdriver-manager>=4.0.1",
         "yt-dlp>=2024.4.9",
-        "ffmpeg-python==0.2.0"
+        "ffmpeg-python==0.2.0",
+        "typing_extensions"
     ],
     packages=find_packages(),
     package_data={'': ['*.py']},
